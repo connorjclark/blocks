@@ -1,0 +1,98 @@
+body {
+  background-color: black;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.2em;
+  margin: 15px;
+  text-align: center;
+  background-size: 32px;
+}
+
+h1, p, a, footer {
+  color: #4EB1BA;
+}
+
+footer {
+  padding: 5px;
+}
+
+#content {
+  border: 1px solid #ccc;
+  background-image: url('images/sand-ss.png');
+  background-repeat: repeat;
+  width: 60%;
+  margin: 0 auto;
+  padding: 10px;
+}
+#content p {
+  background: black;
+  border: 1px solid #ccc;
+  padding: 15px 10px 15px 10px;
+  opacity: 0.7;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.5em;
+  line-height: 120%;
+}
+#content div {
+  opacity: 1;
+  max-height: 1200px;
+  
+  -webkit-transition: all .75s ease;
+  -moz-transition: all .75s ease;
+  -ms-transition: all .75s ease;
+  -o-transition: all .75s ease;
+  transition: all .75s ease;
+}
+#content div.hidden {
+  display: block;
+  opacity: 0; 
+  max-height: 0;
+  overflow: hidden;
+}
+#content textarea {
+  border: 2px solid black;
+  opacity: 0.9;
+  font-size: .8em;
+}
+
+#stage {
+  width: 832px;
+  height: 480px;
+}
+
+#editor-selection-stage {
+  width: 480px;
+  height: 96px;
+  background-color: black;
+  border: 1px solid white;
+}
+
+#editor-selection-div {
+  height: 265px;
+  width: 750px;
+  margin: 0 auto;
+}
+
+#editor-selection-left-column, #editor-selection-right-column {
+  float: left;
+}
+
+#editor-selection-left-column {
+  width: 250px;
+}
+
+#editor-selection-right-column {
+  width: 500px;
+}
+
+#editor-selection-div p {
+  width: 90%;
+}
+
+#win-div p {
+  font-size: 3em;
+  color: green;
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blocks</title>
+    <link rel="stylesheet" href="blocks.css">
+    <meta charset="utf-8">
+    <meta name="description" content="A pushing-block puzzle game inspired by Zelda">
+    <meta name="keywords" content="Hoten,games,block,Zelda,puzzle,push,puzzle,Sokoban">
+    <script type="application/dart" src="blocks.dart"></script>
+    <script src="packages/browser/dart.js"></script>
+  </head>
+  <body>
+    <h1>Blocks</h1>
+    <p>Light blocks can be moved as many times as you like. Dark blocks can only be moved once. You can not push blocks onto sand.</p>
+    
+    <div id="content">
+      <div id="stage-div">
+        <div id="win-div" class="hidden">
+          <p>You win! Do a little dance!</p>
+        </div>
+        <canvas id="stage" width="416" height="240"></canvas>
+        <div id="editor-selection-div" class="hidden">
+          <div id="editor-selection-left-column">
+            <textarea id="puzzle-export" title="Code export" rows="17" cols="26" readonly></textarea>
+          </div>
+          <div id="editor-selection-right-column">
+            <p>Click below to select a block. Hold down the ctrl-key while clicking to remove a trigger/block</p>
+            <canvas id="editor-selection-stage" width="480" height="96"></canvas><br>
+          </div>
+        </div>
+      </div>
+            
+      <div id="menu-div">
+        <button id="open-editor-button">Editor</button>
+        <button id="play-custom-puzzle-button">Play custom puzzle</button><br>
+        <button id="reload-button">Reload current puzzle</button>
+      </div>
+      
+      <div id="input-custom-puzzle-div" class="hidden">
+        <p class="test">Paste the puzzle code below :)</p>
+        <p class="test">For now, I've uploaded a few custom puzzles into <a href="puzzles/" target="_blank">this directory</a></p>
+        <div id="invalid-code-div" class="hidden">
+          <p id="invalid-code-p">Invalid code!</p>
+        </div>
+        <textarea id="puzzle-import" rows="17" cols="26"></textarea><br>
+        <button id="input-custom-puzzle-button">Play!</button>
+      </div>
+
+      <div id="main-menu-button-div" class="hidden">
+        <button id="main-menu-button">Main menu</button>
+      </div>
+    </div>
+    
+    <footer>
+      Inspired by Zelda and <a href="http://www.purezc.net/">Zelda Classic</a>. Created by <a href="http://www.twitter.com/HotenGames">@Hoten</a>. If you like, please follow me on twitter! :)
+    </footer>
+  </body>
+</html>
