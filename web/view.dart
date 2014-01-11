@@ -3,13 +3,17 @@ part of blocks;
 class ViewObject extends GameObject {  
   void hide(List<String> divs) => divs.forEach((div) => querySelector(div).className = 'hidden');
   void show(List<String> divs) => divs.forEach((div) => querySelector(div).className = '');
+  void scaleTo(Sprite sprite) {
+    this.scaleX = stage.stageWidth / sprite.width;
+    this.scaleY = stage.stageHeight / sprite.height;
+  }
 }
 
 class ViewState extends State {
   final ViewObject view;
   
   ViewState(ViewObject view) : this.view = view, super(view);
-  
+    
   void exit() {
     if (view.numChildren > 0) view.removeChildren();
   }
@@ -28,6 +32,7 @@ class PlayingGameState extends ViewState {
     view.show(['#stage-div', '#menu-div']);
     view.hide(['#main-menu-button-div']);
     onWinSubscription = currentPuzzle.onWin.listen((_) => querySelector('#win-div').className = 'visible');
+    view.scaleTo(puzzle);
   }
   
   void update() {
@@ -54,7 +59,7 @@ class EditorState extends ViewState {
   EditorState(ViewObject view) : preview = new Bitmap(), super(view);
   
   void enter() {
-    view.addChild(currentPuzzle);
+    view.addChild(currentPuzzle = new Puzzle(currentPuzzle.data));
     view.addChild(hero);
     view.addChild(preview);
     view.show(['#stage-div', '#editor-selection-div']);
@@ -63,6 +68,7 @@ class EditorState extends ViewState {
     view.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
     view.addEventListener(MouseEvent.MOUSE_OUT, onMouseOut);
     updatePuzzleExportTextArea();
+    view.scaleTo(currentPuzzle);
   }
   
   void update() {
@@ -118,14 +124,14 @@ class EditorState extends ViewState {
   }
   
   void onMouseClick(MouseEvent event) {
-    final x = event.stageX ~/ TILE_SIZE;
-    final y = event.stageY ~/ TILE_SIZE;
+    final x = (event.stageX / view.scaleX) ~/ TILE_SIZE;
+    final y = (event.stageY / view.scaleY) ~/ TILE_SIZE;
     placeSelection(x, y, currentSelectionType, currentSelectionIndex);
   }
   
   void onMouseMove(MouseEvent event) {
-    final x = event.stageX ~/ TILE_SIZE;
-    final y = event.stageY ~/ TILE_SIZE;
+    final x = (event.stageX / view.scaleX) ~/ TILE_SIZE;
+    final y = (event.stageY / view.scaleY) ~/ TILE_SIZE;
     setPreviewImage(currentSelectionType, currentSelectionIndex);
     preview.x = x * TILE_SIZE;
     preview.y = y * TILE_SIZE;

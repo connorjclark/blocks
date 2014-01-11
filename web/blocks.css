@@ -1,12 +1,11 @@
 body {
   background-color: black;
   font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
+  font-size: 1.5em;
   font-weight: normal;
   line-height: 1.2em;
   margin: 15px;
   text-align: center;
-  background-size: 32px;
 }
 
 h1, p, a, footer {
@@ -21,9 +20,9 @@ footer {
   border: 1px solid #ccc;
   background-image: url('images/sand-ss.png');
   background-repeat: repeat;
-  width: 60%;
   margin: 0 auto;
-  padding: 10px;
+  display: inline-block;
+  padding: 20px;
 }
 #content p {
   background: black;
@@ -33,7 +32,7 @@ footer {
   width: 50%;
   margin-left: auto;
   margin-right: auto;
-  font-size: 1.5em;
+  font-size: .8em;
   line-height: 120%;
 }
 #content div {
@@ -59,8 +58,8 @@ footer {
 }
 
 #stage {
-  width: 832px;
-  height: 480px;
+  width: 576px;
+  height: 320px;
 }
 
 #editor-selection-stage {
@@ -93,6 +92,6 @@ footer {
 }
 
 #win-div p {
-  font-size: 3em;
+  font-size: 1.8em;
   color: green;
 }
