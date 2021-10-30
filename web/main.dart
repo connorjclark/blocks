@@ -29,6 +29,9 @@ void main() {
 }
 
 void start() {  
+  StageXL.stageOptions.transparent = true;
+  StageXL.stageOptions.backgroundColor = Color.Transparent;
+
   final view = new ViewObject();
   final EditorState editorState = new EditorState(view);
   final InputCustomPuzzleState inputCustomPuzzleState = new InputCustomPuzzleState(view);

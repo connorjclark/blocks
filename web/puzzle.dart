@@ -216,17 +216,19 @@ class Floor extends Sprite {
   
   Floor._private(type) : bm = new Bitmap() {
     this.type = type;
-    addChild(bm);
   }
   
   get type => _type;
   get intValue => types.indexOf(_type);
   
   void set type(Symbol type) {
-    if (type == #sand)
+    if (type == #sand) {
       bm.bitmapData = null;
-    else
+    } else {
       bm.bitmapData = Resources.floor_bmds[types.indexOf(type)];
+      addChild(bm);
+    }
+
     _type = type;
   }
 }
