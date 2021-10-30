@@ -10,7 +10,7 @@ class Resources {
       ..addBitmapData('trigger-ss', 'images/trigger-ss.png')
       ..addBitmapData('hero', 'images/hero.png')
       ..load().then((_) {
-        final zero = new Point.zero();
+        final zero = new Point(0, 0);
         List<BitmapData> extractSprites(BitmapData ss) {
           return new List.generate(ss.width ~/ TILE_SIZE, (i) {
             final bmd = new BitmapData(16, 16);

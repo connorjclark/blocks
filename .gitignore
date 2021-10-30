@@ -1,19 +1,5 @@
-# Dart Editor
-.children
-.project
-*.dart.js
-*.dart.js.map
-*.dart.js.deps
-*.precompiled.js
-
-# pub
-packages
-
-# polymer
-.buildlog
-out
+dist
+.dart_tool
+.packages
 pubspec.lock
-
-#other
 .DS_Store
-.settings

@@ -1,9 +1,10 @@
 library blocks;
 
+import 'package:stagexl/stagexl.dart';
 import 'dart:html' hide MouseEvent;
 import 'dart:html' as html;
-import 'package:stagexl/stagexl.dart';
 import 'dart:async';
+import 'dart:math';
 
 part 'resources.dart';
 part 'puzzle.dart';
@@ -32,8 +33,8 @@ void start() {
   final EditorState editorState = new EditorState(view);
   final InputCustomPuzzleState inputCustomPuzzleState = new InputCustomPuzzleState(view);
   
-  final stage = new Stage("stage", html.querySelector("#stage"));
-  final editorSelectionStage = new Stage("editor-selection-stage", html.querySelector("#editor-selection-stage"));
+  final stage = new Stage(html.querySelector("#stage"));
+  final editorSelectionStage = new Stage(html.querySelector("#editor-selection-stage"));
   final editorGui = new EditorGui(editorSelectionStage, editorState);
   
   void loadDefaultPuzzle() {
