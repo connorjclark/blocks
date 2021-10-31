@@ -48,7 +48,7 @@ void start() {
   html.querySelector('#play-custom-puzzle-button').onClick.listen((_) => view.state = inputCustomPuzzleState);
   html.querySelector('#open-editor-button').onClick.listen((_) => view.state = editorState);
   html.querySelector('#main-menu-button').onClick.listen((_) => loadDefaultPuzzle());
-  html.querySelector('#reload-button').onClick.listen((_) => view.state = new PlayingGameState(view, new Puzzle(currentPuzzle.data)));
+  html.querySelector('#reload-button').onClick.listen((_) => view.state = new PlayingGameState(view, new Puzzle(currentPuzzle.originalPuzzleData)));
   
   stage.focus = stage;
   stage.addChild(view);

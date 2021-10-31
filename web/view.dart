@@ -59,7 +59,7 @@ class EditorState extends ViewState {
   EditorState(ViewObject view) : preview = new Bitmap(), super(view);
   
   void enter() {
-    view.addChild(currentPuzzle = new Puzzle(currentPuzzle.data));
+    view.addChild(currentPuzzle = new Puzzle(currentPuzzle.originalPuzzleData));
     view.addChild(hero);
     view.addChild(preview);
     view.show(['#stage-div', '#editor-selection-div']);
@@ -73,6 +73,15 @@ class EditorState extends ViewState {
   
   void update() {
     hero.update();
+
+    var nextStartX = hero.x ~/ TILE_SIZE;
+    var nextStartY = hero.y ~/ TILE_SIZE;
+    if (currentPuzzle.startX != nextStartX || currentPuzzle.startY != nextStartY) {
+      currentPuzzle.startX = nextStartX;
+      currentPuzzle.startY = nextStartY;
+      updatePuzzleExportTextArea();
+    }
+
     currentPuzzle.tiles.expand((i) => i).toList().map((tile) => tile.block).forEach((block) {
       if (block != null) block.update();
     });

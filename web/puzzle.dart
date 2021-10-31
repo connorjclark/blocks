@@ -8,8 +8,9 @@ class Puzzle extends Sprite {
                triggerContainer = new Sprite(),
                floorContainer = new Sprite();
   final List<List<Tile>> tiles; //tiles[y][x]
+  int startX, startY;
   final onWinController = new StreamController.broadcast();
-  final String data;
+  String originalPuzzleData;
   get onWin => onWinController.stream;
   
   factory Puzzle(String data) {
@@ -38,14 +39,15 @@ class Puzzle extends Sprite {
     return new Puzzle._private(dataArray, tilesHorizontal, tilesVertical, start[0], start[1]);
   }
   
-  Puzzle._private(List<String> data, int tilesHorizontal, int tilesVertical, int startX, int startY) :
+  Puzzle._private(List<String> data, int tilesHorizontal, int tilesVertical, int this.startX, int this.startY) :
     tiles = new List.generate(tilesVertical, (y) =>
       new List.generate(tilesHorizontal, (x) =>
         new Tile(x, y, data[y].codeUnitAt(x) - 256)
       )
-    ),
-    data = '$startX $startY\n' + data.join("\n")
+    )
   {
+    originalPuzzleData = encode();
+
     //catch all mouse events
     final shape = new Shape();
     shape.graphics..rect(0, 0, tilesHorizontal * TILE_SIZE, tilesVertical * TILE_SIZE)..fillColor(Color.Transparent);
@@ -65,7 +67,7 @@ class Puzzle extends Sprite {
     });
   }
   
-  String encode() => "${getWidth() ~/ 2} ${getHeight() ~/ 2}\n" + tiles.map((list) =>
+  String encode() => "${startX} ${startY}\n" + tiles.map((list) =>
       list.map((tile) =>
           new String.fromCharCode(tile.encode() + 256)
       ).join()
@@ -73,8 +75,8 @@ class Puzzle extends Sprite {
   
   void checkForWin() {
     final width = getWidth(), height = getHeight();
-    for (var x = 0; x < getWidth(); x++) {
-      for (var y = 0; y < getHeight(); y++) {
+    for (var x = 0; x < width; x++) {
+      for (var y = 0; y < height; y++) {
         if (hasTrigger(x, y) && getBlock(x, y) == null) return;
       }
     }
