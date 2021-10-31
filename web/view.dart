@@ -160,20 +160,38 @@ class InputCustomPuzzleState extends ViewState {
   void enter() {
     view.show(['#input-custom-puzzle-div', '#main-menu-button-div']);
 
-    var puzzles = PUZZLES;
+    var puzzles = [...PUZZLES];
+    puzzles.add({
+      'name': 'Custom Puzzle #1',
+      'data': TITLESCREEN_PUZZLE,
+    });
 
     var el = querySelector('.puzzle-list');
     el.innerHtml = '';
     for (var i = 0; i < puzzles.length; i++) {
       var puzzle = puzzles[i];
       var puzzleEl = document.createElement('div');
-      puzzleEl.text = puzzle['name'];
+      puzzleEl.text = puzzle['name'] + ' – Play';
       puzzleEl.dataset['puzzle-index'] = '${i}';
       el.append(puzzleEl);
 
       puzzleEl.onClick.listen((event) {
         view.state = new PlayingGameState(view, new Puzzle(puzzle['data']));
       });
+
+      if (!PUZZLES.contains(puzzle)) {
+        puzzleEl.appendText(' | ');
+
+        var editEl = document.createElement('span');
+        editEl.text = 'Edit';
+        puzzleEl.append(editEl);
+
+        editEl.onClick.listen((event) {
+          event.stopPropagation();
+          currentPuzzle = new Puzzle(puzzle['data']);
+          view.state = editorState;
+        });
+      }
     }
   }
   

@@ -102,4 +102,6 @@ footer {
   padding: 5px;
   margin: 5px;
   background-color: bisque;
+  overflow-y: auto;
+  max-height: 30vh;
 }
