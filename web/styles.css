@@ -95,3 +95,11 @@ footer {
   font-size: 1.8em;
   color: green;
 }
+
+.puzzle-list {
+  display: inline-block;
+  cursor: pointer;
+  padding: 5px;
+  margin: 5px;
+  background-color: bisque;
+}

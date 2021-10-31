@@ -12,6 +12,7 @@ part 'hero.dart';
 part 'states.dart';
 part 'view.dart';
 part 'editorgui.dart';
+part 'puzzle-data.dart';
 
 final TILE_SIZE = 16;
 

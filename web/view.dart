@@ -159,6 +159,22 @@ class InputCustomPuzzleState extends ViewState {
   
   void enter() {
     view.show(['#input-custom-puzzle-div', '#main-menu-button-div']);
+
+    var puzzles = PUZZLES;
+
+    var el = querySelector('.puzzle-list');
+    el.innerHtml = '';
+    for (var i = 0; i < puzzles.length; i++) {
+      var puzzle = puzzles[i];
+      var puzzleEl = document.createElement('div');
+      puzzleEl.text = puzzle['name'];
+      puzzleEl.dataset['puzzle-index'] = '${i}';
+      el.append(puzzleEl);
+
+      puzzleEl.onClick.listen((event) {
+        view.state = new PlayingGameState(view, new Puzzle(puzzle['data']));
+      });
+    }
   }
   
   void update() {}
